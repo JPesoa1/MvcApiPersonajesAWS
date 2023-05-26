@@ -18,6 +18,13 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Test()
+        {
+            ViewData["TEST"] = await this.service.TestApiAsync();
+            return View();
+        }
+
+
         public async Task<IActionResult> ApiPersonajes()
         {
             List<Personaje> personajes =

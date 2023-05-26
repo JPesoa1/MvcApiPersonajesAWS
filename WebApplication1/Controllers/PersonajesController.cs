@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> ApiPersonajes()
         {
             List<Personaje> personajes =
-                await this.service.TestApiAsync();
+                await this.service.GetPersonajesAsync();
             return View(personajes);
         }
 

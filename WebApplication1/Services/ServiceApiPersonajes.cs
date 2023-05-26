@@ -14,7 +14,7 @@ namespace WebApplication1.Services
             this.Header =
                 new MediaTypeWithQualityHeaderValue("application/json");
         }
-        public async Task<string> TestApiAsync()
+        public async Task<List<Personaje>> TestApiAsync()
         {
             string request = "/api/personajes";
             var handler = new HttpClientHandler();
@@ -31,8 +31,13 @@ namespace WebApplication1.Services
             client.DefaultRequestHeaders.Accept.Add(this.Header);
             HttpResponseMessage response =
                    await client.GetAsync(request);
-            return "Respuesta: " + response.StatusCode;
+            List<Personaje> data = await response.Content.ReadFromJsonAsync<List<Personaje>>();
+            return data;
+
+            
         }
+
+
         private async Task<T> CallApiAsync<T>(string request)
         {
             using (HttpClient client = new HttpClient())
